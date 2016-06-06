@@ -10,18 +10,25 @@ using namespace std;
 struct Sym {
 	string val;
 	Sym(string);
-	vector<Sym*> nest; void push(Sym*);
-	virtual string dump(int=0); virtual string head(); string pad(int);
+	vector<Sym*> nest; void push(Sym*);		// nested
+	virtual string dump(int=0); 			// \ dumping
+	virtual string head();
+	string pad(int);						// /
+	virtual string str();					// str(object)
+	virtual Sym* eval();
+	virtual Sym* add(Sym*);
 };
+
+struct Error: Sym { Error(string); };
 
 extern map<string,Sym*> glob;
 extern void glob_init();
 
-struct Str: Sym { Str(string); string head(); };
+struct Str: Sym { Str(string); string head(); Sym*add(Sym*); };
 
 struct Vector: Sym { Vector(); };
 
-struct Op: Sym { Op(string); };
+struct Op: Sym { Op(string); Sym*eval(); };
 
 extern int yylex();
 extern int yylineno;
