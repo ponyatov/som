@@ -1,4 +1,6 @@
 
+ABOUT = 'Simple Object Model'
+
 skelex = [
 	files = [ src.src log.log 
 		core = [ ypp.ypp lpp.lpp hpp.hpp cpp.cpp Makefile ]

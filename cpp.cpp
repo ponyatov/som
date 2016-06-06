@@ -1,7 +1,7 @@
 #include "hpp.hpp"
 #define YYERR "\n\n"<<yylineno<<":"<<msg<<"["<<yytext<<"]\n\n"
 void yyerror(string msg) { cout<<YYERR; cerr<<YYERR; exit(-1); }
-int main() { return yyparse(); }
+int main() { glob_init(); return yyparse(); }
 
 Sym::Sym(string V) { val=V; }
 void Sym::push(Sym*o) { nest.push_back(o); }
