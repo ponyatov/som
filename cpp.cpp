@@ -20,6 +20,7 @@ Sym* Sym::eval() {
 		(*it) = (*it)->eval();
 	return this; }
 
+Sym* Sym::eq(Sym*o) { glob[val]=o; return o; }
 Sym* Sym::add(Sym*o) { return new Error("undef "+head()+"+"+o->head()); }
 
 Error::Error(string V):Sym(V) { yyerror(val); }
@@ -40,6 +41,7 @@ Vector::Vector():Sym("[]") {}
 Op::Op(string V):Sym(V) {}
 Sym* Op::eval() {
 	if (val=="~") return nest[0]; else Sym::eval();		// quote or nested eval
+	if (val=="=") return nest[0]->eq(nest[1]);			// =
 	if (val=="+") return nest[0]->add(nest[1]);			// +
 	return this;
 }
@@ -47,5 +49,6 @@ Sym* Op::eval() {
 map<string,Sym*> glob;
 void glob_init() {
 	glob["MODULE"] = new Str(MODULE);
+	glob["AUTHOR"] = new Str(ABOUT);
 	glob["bl"] = new Str(" ");
 }

@@ -1,6 +1,7 @@
 #ifndef _H_SOM
 #define _H_SOM
 
+#include "meta.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <vector>
@@ -16,7 +17,8 @@ struct Sym {
 	string pad(int);						// /
 	virtual string str();					// str(object)
 	virtual Sym* eval();
-	virtual Sym* add(Sym*);
+	virtual Sym* eq(Sym*);					// this = obj
+	virtual Sym* add(Sym*);					// this * obj
 };
 
 struct Error: Sym { Error(string); };

@@ -12,8 +12,10 @@ skelex = [
 README.md = [
 	'# '+MODULE
 	'### '+ABOUT
-	'\n(c) '+AUTHOR
-	'\ngithub: '+GITHUB
+	''
+	'(c) '+AUTHOR
+	''
+	'github: '+GITHUB
 ]
 
 .end
