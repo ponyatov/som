@@ -1,3 +1,5 @@
 #define MODULE	"som"
 #define ABOUT	"Simple Object Model"
-#define AUTHOR	"Dmitry Ponyatov <dponyatov@gmail.com"
+#define AUTHOR	"Dmitry Ponyatov <dponyatov@gmail.com>"
+#define LICENSE	"GNU LesserGPL"
+#define GITHUB	"http://github.com/ponyatov/" MODULE "/"

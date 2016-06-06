@@ -13,7 +13,7 @@ README.md = [
 	'# '+MODULE
 	'### '+ABOUT
 	''
-	'(c) '+AUTHOR
+	'(c) '+AUTHOR+' , '+LICENSE
 	''
 	'github: '+GITHUB
 ]

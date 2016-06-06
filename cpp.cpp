@@ -49,6 +49,9 @@ Sym* Op::eval() {
 map<string,Sym*> glob;
 void glob_init() {
 	glob["MODULE"] = new Str(MODULE);
-	glob["AUTHOR"] = new Str(ABOUT);
+	glob["ABOUT"] = new Str(ABOUT);
+	glob["AUTHOR"] = new Str(AUTHOR);
+	glob["LICENSE"] = new Str(LICENSE);
+	glob["GITHUB"] = new Str(GITHUB);
 	glob["bl"] = new Str(" ");
 }
