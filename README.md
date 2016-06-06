@@ -1,2 +1,6 @@
 # som
-Simple Object Machine
+### Simple Object Machine
+
+(c) Dmitry Ponyatov <dponyatov@gmail.com>
+
+github: https://github.com/ponyatov/som/
