@@ -1,1 +1,38 @@
-skelex = [ files = [ src.src log.log ypp.ypp lpp.lpp hpp.hpp cpp.cpp ] Makefile .gitignore ]
+
+skelex = [
+	files = [ src.src log.log 
+		core = [ ypp.ypp lpp.lpp hpp.hpp cpp.cpp Makefile ]
+	.gitignore ]
+	sh.sh bat.bat
+	README.md
+]
+
+README.md = [
+	'# '+MODULE
+	'### '+ABOUT
+	'\n(c) '+AUTHOR
+	'\ngithub: '+GITHUB
+]
+
+.end
+
+.gitignore = [ *~ *.swp exe.exe log.log ypp.tab.cpp ypp.tab.hpp lex.yy.c ]
+
+bat.bat = [ '@start .' '@gvim -p'+files/bl ]
+
+sh.sh = [ #!/bin/sh gvim -p files ]
+
+Makefile = [ 
+log.log: src.src ./exe.exe
+	./exe.exe < $< > $@ && tail $(TAIL) $@
+C = cpp.cpp ypp.tab.cpp lex.yy.c
+H = hpp.hpp ypp.tab.hpp
+CXXFLAGS += -std=gnu++11
+./exe.exe: $(C) $(H)
+	$(CXX) $(CXXFLAGS) -o $@ $(C) $(L)
+ypp.tab.cpp: ypp.ypp
+	bison $<
+lex.yy.c: lpp.lpp
+	flex $<
+]
+

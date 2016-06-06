@@ -1,0 +1,37 @@
+%{
+#include "hpp.hpp"
+string LexString;
+%}
+%option noyywrap
+%option yylineno
+%x lexstring
+%%
+#[^n]*				{}					/* comment */
+^\.end				{yyterminate();}	/* stop parser */
+
+'					{BEGIN(lexstring); LexString=""; }
+<lexstring>'		{BEGIN(INITIAL); yylval.o=new Str(LexString); return STR; }
+<lexstring>.		{LexString+=yytext[0];}
+
+[a-zA-Z0-9_.?]+		TOC(Sym,SYM)		/* symbol */
+
+\(					TOC(Op,LP)			/* brackets */
+\)					TOC(Op,RP)
+\[					TOC(Op,LQ)
+\]					TOC(Op,RQ)
+\{					TOC(Op,LC)
+\}					TOC(Op,RC)
+
+\=					TOC(Op,EQ)			/* operators */
+\@					TOC(Op,AT)
+\~					TOC(Op,TILD)
+\:					TOC(Op,COLON)
+
+\+					TOC(Op,ADD)
+\-					TOC(Op,SUB)
+\*					TOC(Op,MUL)
+\/					TOC(Op,DIV)
+\^					TOC(Op,POW)
+
+[ \t\r\n]+			{}					/* drop spaces */
+%%
